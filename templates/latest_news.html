@@ -1,0 +1,88 @@
+{%extends 'index.html'%}
+{% load static %}
+{% load i18n %}
+
+<title> {% block title %}{% blocktrans %}So'ngi xabarlar{% endblocktrans %}{% endblock title %} </title>
+
+{% block content %}
+<main>
+    <!-- About US Start -->
+    <div class="about-area2 gray-bg pt-60 pb-60">
+        <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- single -->
+                        {% for news in news_list %}
+                        <div class="col-xl-12">
+                            <div class="whats-right-single mb-20">
+                                <div class="whats-right-img">
+                                    <a href="{{news.get_absolute_url}}">
+                                        <img style="height: 105px; width: 130px;" src="{{news.image.url}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="whats-right-cap">
+                                    <div>
+                                        <span class="colorb">{{news.category}}</span>
+                                        <span class="mx-3">{{news.publish_time}}</span> 
+                                    </div>
+                                    <h4><a href="{{news.get_absolute_url}}">{{news.title|truncatewords:5}}</a></h4>
+                                    <p>{{ news.body|truncatewords:30}}</p>
+                                </div>
+                            </div>
+                            <hr class="my-3 p-0">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Flow Socail -->
+                        <div class="single-follow mb-45">
+                            <div class="single-box">
+                                <div class="follow-us d-flex align-items-center">
+                                    <div class="follow-social">
+                                        <a href="#"><img src="{% static 'images/news/icon-fb.png' %}" alt=""></a>
+                                    </div>
+                                    <div class="follow-count">  
+                                        <span>8,045</span>
+                                        <p>Fans</p>
+                                    </div>
+                                </div> 
+                                <div class="follow-us d-flex align-items-center">
+                                    <div class="follow-social">
+                                        <a href="#"><img src="{% static 'images/news/icon-tw.png' %}" alt=""></a>
+                                    </div>
+                                    <div class="follow-count">
+                                        <span>8,045</span>
+                                        <p>Fans</p>
+                                    </div>
+                                </div>
+                                    <div class="follow-us d-flex align-items-center">
+                                    <div class="follow-social">
+                                        <a href="#"><img src="{% static 'images/news/icon-ins.png' %}" alt=""></a>
+                                    </div>
+                                    <div class="follow-count">
+                                        <span>8,045</span>
+                                        <p>Fans</p>
+                                    </div>
+                                </div>
+                                <div class="follow-us d-flex align-items-center">
+                                    <div class="follow-social">
+                                        <a href="#"><img src="{% static 'images/news/icon-yo.png' %}" alt=""></a>
+                                    </div>
+                                    <div class="follow-count">
+                                        <span>8,045</span>
+                                        <p>Fans</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- New Poster -->
+                        <div class="news-poster d-none d-lg-block">
+                            <img src="{% static 'images/news/news_card.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- About US End -->
+</main>
+{% endblock %}

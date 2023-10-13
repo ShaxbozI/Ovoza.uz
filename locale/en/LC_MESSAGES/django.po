@@ -1,0 +1,429 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-10 11:28+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\ovoza\settings.py:127
+msgid "Uzbek"
+msgstr ""
+
+#: .\ovoza\settings.py:128
+msgid "Russian"
+msgstr ""
+
+#: .\ovoza\settings.py:129
+msgid "English"
+msgstr ""
+
+#: .\templates\about.html:4
+msgid "Biz haqimizda"
+msgstr "About"
+
+#: .\templates\about.html:12
+msgid "Bizning maqsad"
+msgstr "Our mission"
+
+#: .\templates\about.html:14
+msgid ""
+"Biz nima xoxlaymiz - bugun dunyoda va yurtimizda qanday yangiliklar ilmiy "
+"ommabop hoh u texnika hoh u hayvonot dunyosi, \n"
+"                            insonlar, jamiyatlar va siz bilishingiz lozim "
+"bo'lgan mahalliy va dunyo yangiliklarini yetkazish"
+msgstr ""
+"What do we want - what are the scientific news in the world and in our "
+"country todaypopular or tech or wildlife, \n"
+"people, societies and you need to knowdelivering the latest local and world "
+"news"
+
+#: .\templates\about.html:17
+msgid "Biz sizni haqiqat ila yuzlashtiramiz"
+msgstr "We will make you face the truth"
+
+#: .\templates\about.html:20
+msgid "Qadryatlar"
+msgstr "Our definition"
+
+#: .\templates\about.html:21
+msgid ""
+"Inson omilini qadrlovchi jamoamizdan Inson omilini qadrlovchi jamiyatga "
+"uchun xizmat qilish"
+msgstr ""
+"From our team that values the human factor to the society that values the "
+"human factorserve for"
+
+#: .\templates\about.html:23
+msgid "Kelajak o'z ishining ustalarini kutadi."
+msgstr "The future awaits the masters of their craft."
+
+#: .\templates\about.html:42
+msgid "Siz uchun takliflar"
+msgstr "Services for you"
+
+#: .\templates\about.html:43
+msgid "Eng yaxshi Takliflarimiz"
+msgstr "Our best service"
+
+#: .\templates\about.html:46
+msgid "Biz bilan loyihalaringizni insonlarga taniting"
+msgstr "Introduce your projects to people with us"
+
+#: .\templates\about.html:47
+msgid ""
+"Insonlar uchun foydali bo'lgan ularning yaxhi yashashlari uchun hizmat "
+"qiuvchi loyihalaringiz boirmi unda biz orqali uni mashhur qiling"
+msgstr ""
+"A service that is useful to people for their well-beingIf you have any "
+"ambitious project, make it famous through us"
+
+#: .\templates\about.html:48
+msgid "Ko'proq bilish"
+msgstr "More"
+
+#: .\templates\about.html:63
+msgid "Bizning Mutahasislar"
+msgstr "Our experts"
+
+#: .\templates\about.html:64
+msgid "Jamoamiz azolari"
+msgstr "Members of our team"
+
+#: .\templates\category.html:7
+msgid "Yangiliklar turkumi"
+msgstr "Category"
+
+#: .\templates\category.html:24 .\templates\home.html:73
+#: .\templates\search_result.html:5
+msgid "Yangiliklar"
+msgstr "News"
+
+#: .\templates\category.html:32 .\templates\home.html:81
+msgid "Barchasi"
+msgstr "All"
+
+#: .\templates\category.html:33 .\templates\home.html:82
+msgid "Mahalliy"
+msgstr "Local"
+
+#: .\templates\category.html:34 .\templates\home.html:83
+msgid "Xorijiy"
+msgstr "Foreign"
+
+#: .\templates\category.html:35 .\templates\home.html:84
+msgid "Sport"
+msgstr "Sport"
+
+#: .\templates\category.html:36 .\templates\home.html:85
+msgid "Fan-Texnika"
+msgstr "Science and Technology"
+
+#: .\templates\contact.html:7 .\templates\contact.html:18
+msgid "Biz bilan bog'laning"
+msgstr "Contact us"
+
+#: .\templates\contact.html:27
+msgid "Xabar mazmuni"
+msgstr "Message content"
+
+#: .\templates\contact.html:32
+msgid "Ismingizni kiriting"
+msgstr "Enter your name"
+
+#: .\templates\contact.html:37
+msgid "Email"
+msgstr "Email"
+
+#: .\templates\contact.html:42
+msgid "Savol turini kiriting"
+msgstr "Enter the question type"
+
+#: .\templates\contact.html:47 .\templates\news\news_detail.html:158
+#: .\templates\news\news_detail.html:162
+msgid "Yuborish"
+msgstr "Submit"
+
+#: .\templates\contact.html:55
+msgid "Jeynov, Qashqadaryo"
+msgstr "Jeynov, Kashkadarya"
+
+#: .\templates\contact.html:56
+msgid "Peshqadam, 7-uy"
+msgstr "Peshkadam, 7th house"
+
+#: .\templates\contact.html:63
+msgid "Dushanba / Shanba 8:00 - 18:00"
+msgstr "Monday / Saturday 8:00 - 18:00"
+
+#: .\templates\contact.html:70
+msgid "Savol va takliflar uchun!"
+msgstr "For questions and suggestions!"
+
+#: .\templates\home.html:7
+msgid ""
+"O‘zbekiston va jahon yangiliklari, eng so‘nggi tezkor xabarlar, qiziqarli "
+"maqola, intervyu, foto va video materiallar - Ovoza.uz"
+msgstr ""
+"Uzbekistan and world news, latest breaking news, interestingarticle, "
+"interview, photo and video materials - Ovoza.uz"
+
+#: .\templates\home.html:312 .\templates\media_news.html:168
+#: .\templates\news\news_create.html:91 .\templates\news\news_create.html:256
+msgid "So'ngi yangiliklar"
+msgstr "Latest news"
+
+#: .\templates\home.html:404
+msgid "Eng ko'p o'qilganlar"
+msgstr "Most read"
+
+#: .\templates\home.html:442
+msgid "Mashhur Reportajlar"
+msgstr "Famous Reports"
+
+#: .\templates\home.html:506
+msgid "Video"
+msgstr "Video"
+
+#: .\templates\home.html:607
+msgid "Hafta davomida"
+msgstr "During the week"
+
+#: .\templates\index.html:74
+msgid "Har doim sizga yaqinmiz"
+msgstr "We are always close to you"
+
+#: .\templates\index.html:82 .\templates\news\news_create.html:5
+#: .\templates\news\news_create.html:17 .\templates\news\news_create.html:188
+msgid "Yangilik qo'shish"
+msgstr "Add news"
+
+#: .\templates\index.html:128
+msgid "Asosiy"
+msgstr "Home"
+
+#: .\templates\index.html:129
+msgid "Haqida"
+msgstr "About"
+
+#: .\templates\index.html:130
+msgid "Turkum"
+msgstr "Category"
+
+#: .\templates\index.html:131
+msgid "Eng So'ngi"
+msgstr "Latest news"
+
+#: .\templates\index.html:132
+msgid "Media"
+msgstr "Media"
+
+#: .\templates\index.html:135
+msgid "Aloqa"
+msgstr "Contact"
+
+#: .\templates\index.html:233
+msgid ""
+"Mahalliy va Jahon xabarlarini biz bilan birga kuzating va fikr yuriting "
+"Dunyoga nigoh soling"
+msgstr "Watch and think with us about local and world newsLook at the world"
+
+#: .\templates\index.html:234
+msgid "O'zbekiston Qashqadaryo, Jeynov shaharchasi, Navro'z MFY, 181004"
+msgstr "Uzbekistan Kashkadarya, Jeynov town, Navroz MFY, 181004"
+
+#: .\templates\index.html:235
+msgid "Telefon: +998(97) 720 59 96"
+msgstr "Phone: +998(97) 720 59 96"
+
+#: .\templates\index.html:244
+msgid "Mashur yangiliklar"
+msgstr "Popular news"
+
+#: .\templates\index.html:267
+msgid "Obuna"
+msgstr "Subscription"
+
+#: .\templates\index.html:271
+#, fuzzy
+#| msgid "Ismingizni kiriting"
+msgid "Email kiriting"
+msgstr "Enter your name"
+
+#: .\templates\index.html:274 .\templates\news\news_detail.html:242
+msgid "Obuna bo'lish"
+msgstr "Subscribe"
+
+#: .\templates\index.html:307 .\templates\news\news_detail.html:174
+#: .\templates\news\news_detail.html:175
+msgid "Izlash..."
+msgstr "Search..."
+
+#: .\templates\latest_news.html:5
+msgid "So'ngi xabarlar"
+msgstr "Latest news"
+
+#: .\templates\media_news.html:21 .\templates\news\news_audio.html:6
+#, fuzzy
+#| msgid "So'ngi xabarlar"
+msgid "Audio xabarlar"
+msgstr "Latest news"
+
+#: .\templates\media_news.html:22
+#, fuzzy
+#| msgid "So'ngi yangiliklar"
+msgid "Video yangiliklar "
+msgstr "Latest news"
+
+#: .\templates\media_news.html:45 .\templates\news\news_audio.html:18
+msgid "Xabarni ustiga bosing va bu yerda tinglang"
+msgstr "Click on the message and listen here"
+
+#: .\templates\media_news.html:112
+msgid "Yangilik ustiga bosing va bu yerda tomosha qiling"
+msgstr "Click on the news and watch it here"
+
+#: .\templates\news\news_create.html:25
+msgid "Matnli "
+msgstr "Text"
+
+#: .\templates\news\news_create.html:26
+#, fuzzy
+#| msgid "Video"
+msgid "Video "
+msgstr "Video"
+
+#: .\templates\news\news_create.html:27
+msgid "Audio "
+msgstr "Audio"
+
+#: .\templates\news\news_create.html:47 .\templates\news\news_create.html:59
+#: .\templates\news\news_create.html:71 .\templates\news\news_create.html:246
+#: .\templates\news\news_edit.html:79
+msgid "Yangilikni qo'shish"
+msgstr "Add news"
+
+#: .\templates\news\news_create.html:230 .\templates\news\news_edit.html:63
+msgid "Rasm tanlang"
+msgstr "Select a picture"
+
+#: .\templates\news\news_create.html:234 .\templates\news\news_edit.html:67
+msgid "Turini tanlang"
+msgstr "Select the type"
+
+#: .\templates\news\news_create.html:235 .\templates\news\news_edit.html:68
+msgid "xorijiy"
+msgstr "foreign"
+
+#: .\templates\news\news_create.html:236 .\templates\news\news_edit.html:69
+msgid "sport"
+msgstr "sport"
+
+#: .\templates\news\news_create.html:237 .\templates\news\news_edit.html:70
+msgid "fan-texnika"
+msgstr "science and technology"
+
+#: .\templates\news\news_create.html:238 .\templates\news\news_edit.html:71
+msgid "mahalliy"
+msgstr "local"
+
+#: .\templates\news\news_detail.html:39 .\templates\news\news_detail.html:116
+msgid "Izoh"
+msgstr "Comment"
+
+#: .\templates\news\news_detail.html:40
+msgid "Ko'rishlar"
+msgstr "View"
+
+#: .\templates\news\news_detail.html:47
+msgid "O'zgartirish"
+msgstr "Reformation"
+
+#: .\templates\news\news_detail.html:48
+msgid "O'chirish"
+msgstr "Delete"
+
+#: .\templates\news\news_detail.html:57
+msgid "Xabarni ulashing"
+msgstr "Share"
+
+#: .\templates\news\news_detail.html:84
+msgid "Oldingi yangilik"
+msgstr "Previous news"
+
+#: .\templates\news\news_detail.html:94
+msgid "Keyingi yangilik"
+msgstr "Next news"
+
+#: .\templates\news\news_detail.html:145
+msgid "Izoh qoldiring"
+msgstr "Add comment"
+
+#: .\templates\news\news_detail.html:186
+msgid "Ko'p o'qilgan"
+msgstr "Most read"
+
+#: .\templates\news\news_detail.html:206
+msgid "Kalit so'zlar"
+msgstr "Keywords"
+
+#: .\templates\news\news_detail.html:209
+msgid "loyiha"
+msgstr "project"
+
+#: .\templates\news\news_detail.html:212
+msgid "jonli"
+msgstr "live"
+
+#: .\templates\news\news_detail.html:215
+msgid "texnalogiya"
+msgstr "technology"
+
+#: .\templates\news\news_detail.html:218
+msgid "sayohat"
+msgstr "travel"
+
+#: .\templates\news\news_detail.html:221
+msgid "restoran"
+msgstr "restaurant"
+
+#: .\templates\news\news_detail.html:224
+msgid "hayot tarzi"
+msgstr "life style"
+
+#: .\templates\news\news_detail.html:227
+msgid "dizayn"
+msgstr "design"
+
+#: .\templates\news\news_detail.html:230
+msgid "jamiyat"
+msgstr "society"
+
+#: .\templates\news\news_edit.html:12
+msgid "Yangilikni tahrirlash"
+msgstr "Editing news"
+
+#: .\templates\news\news_video.html:5
+#, fuzzy
+#| msgid "So'ngi yangiliklar"
+msgid "Video yangiliklar"
+msgstr "Latest news"
+
+#: .\templates\search_result.html:14
+msgid "Qidiruv natijalari"
+msgstr "Search results"
+
+#~ msgid "Sahifalar"
+#~ msgstr "Pages"

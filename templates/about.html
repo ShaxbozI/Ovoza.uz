@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+<title>{% block title %}{% blocktrans %}Biz haqimizda{% endblocktrans %}{% endblock %}</title>
+{% block content %}
+<main>
+    <div class="about-details section-padding30">
+        <div class="container">
+            <div class="row">
+                <div class="offset-xl-1 col-lg-8">
+                    <div class="about-details-cap mb-50">
+                        <h4>{% blocktrans %}Bizning maqsad{% endblocktrans %}</h4>
+                        <p>
+                            {% blocktrans %}Biz nima xoxlaymiz - bugun dunyoda va yurtimizda qanday yangiliklar ilmiy ommabop hoh u texnika hoh u hayvonot dunyosi, 
+                            insonlar, jamiyatlar va siz bilishingiz lozim bo'lgan mahalliy va dunyo yangiliklarini yetkazish{% endblocktrans %}
+                        </p>
+                        <p> {% blocktrans %}Biz sizni haqiqat ila yuzlashtiramiz{% endblocktrans %}</p>
+                    </div>
+                    <div class="about-details-cap mb-50">
+                        <h4>{% blocktrans %}Qadryatlar{% endblocktrans %}</h4>
+                        <p>{% blocktrans %}Inson omilini qadrlovchi jamoamizdan Inson omilini qadrlovchi jamiyatga uchun xizmat qilish{% endblocktrans %}
+                            </p>
+                        <p>{% blocktrans %}Kelajak o'z ishining ustalarini kutadi.{% endblocktrans %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--? About Area Start-->
+    <div class="support-company-area pt-100 pb-100 section-bg fix" data-background="{% static 'images/gallery/section_bg02.jpg' %}">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="support-location-img">
+                        <img src="{% static 'images/gallery/about.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="right-caption">
+                        <!-- Section Tittle -->
+                        <div class="section-tittles section-tittles2 mb-50">
+                            <span>{% blocktrans %}Siz uchun takliflar{% endblocktrans %}</span>
+                            <h2>{% blocktrans %}Eng yaxshi Takliflarimiz{% endblocktrans %}</h2>
+                        </div>
+                        <div class="support-caption">
+                            <p class="pera-top">{% blocktrans %}Biz bilan loyihalaringizni insonlarga taniting{% endblocktrans %}</p>
+                            <p class="mb-65">{% blocktrans %}Insonlar uchun foydali bo'lgan ularning yaxhi yashashlari uchun hizmat qiuvchi loyihalaringiz boirmi unda biz orqali uni mashhur qiling{% endblocktrans %}</p>
+                            <a href="about.html" class="btn post-btn ">{% blocktrans %}Ko'proq bilish{% endblocktrans %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Area End-->
+    <!-- Team Start -->
+    <div class="team-area section-padding30">
+        <div class="container">
+            <div class="row">
+                <div class="cl-xl-7 col-lg-8 col-md-10">
+                    <!-- Section Tittle -->
+                    <div class="section-tittles mb-70">
+                        <span class="">{% blocktrans %}Bizning Mutahasislar{% endblocktrans %} </span>
+                        <h2>{% blocktrans %}Jamoamiz azolari{% endblocktrans %}</h2>
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <!-- single Tem -->
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                    <div class="single-team mb-30">
+                        <div class="team-img">
+                            <img src="{% static 'images/gallery/team1.jpg' %}" alt="">
+                        </div>
+                        <div class="team-caption">
+                            <h3><a href="#">Shaxboz Abdullayev</a></h3>
+                            <span>Python developer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+    <!-- banner-last Start -->
+    <div class="banner-area gray-bg pb-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-10">
+                    <div class="banner-one">
+                        <img src="{% static 'images/gallery/body_card3.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner-last End -->
+</main>
+{% endblock %}

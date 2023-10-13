@@ -1,0 +1,14 @@
+{%extends 'index.html'%}
+{% load static %}
+{% load i18n %}
+
+<title> {% block title %}Yangilikni o'chirish{% endblock title %} </title>
+
+{% block content %}
+<h3 class="text-center">Yangilikni O'chirish</h3>
+<h5 class="text-center">"{{news.title}}"</h5>
+<form action="" method="post" class="text-center"> 
+    {% csrf_token %}
+    <button type="submit" class="bg-danger border">O'chirish</button>
+</form>
+{% endblock %}

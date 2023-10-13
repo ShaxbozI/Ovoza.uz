@@ -1,0 +1,26 @@
+{%extends 'index.html'%}
+{% load static %}
+{% load i18n %}
+
+<title> {% block title %}{{news.title}}{% endblock title %} </title>
+
+{% block content %}
+<section class="whats-news-area pt-10 pb-20 gray-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 py-5">
+                <h3 class="text-center">{% blocktrans %}Yangilikni tahrirlash{% endblocktrans %}</h3>
+               
+                <h5 class="text-center py-3">"{{news.title}}"</h5>
+                <form action="{% url 'edit' wich_news news.slug  %}" method="post" class="text-center" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    {{ forms }}
+                    <div class="form-group mt-3 col-12 text-center">
+                        <button type="submit" class="bg-success border form-control text-white">{% blocktrans %}Yangilikni qo'shish{% endblocktrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,272 @@
+{%extends 'index.html'%}
+{% load static %}
+{% load hitcount_tags %}
+{% load i18n %}
+
+<title> {% block title %}{{news.title}}{% endblock title %} </title>
+
+{% block content %}
+<section class="whats-news-area pt-20 pb-20 gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+            <div class="whats-news-wrapper">
+                <!-- Heading & Nav Button -->
+                <div class="row justify-content-center align-items-end mb-15">
+                    <div class="col-12">
+                        <div class="properties__button">
+                            <!--Nav Button  -->                                            
+                            <nav>                                                 
+                                <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">{% blocktrans %}Audio xabarlar{% endblocktrans %}</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">{% blocktrans %}Video yangiliklar {% endblocktrans %}</a>
+                                </div>
+                            </nav>
+                            <!--End Nav Button  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab content -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Nav Card -->
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- card one -->
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">       
+                                <div class="row audio-wrapper">
+                                    <div class="col-12 bg-white header-audio-player">
+                                        <div class="row align-items-center mt-1">
+                                            <div class="col-12 mt-1" id="audio_source">
+                                                <audio class="col-12" controls>
+                                                    <source src="" type="audio/mpeg">
+                                                </audio>
+                                            </div>
+                                            <div class="col-12">
+                                                <h6 class="text-center mt-1" id="news_title">{% blocktrans %}Xabarni ustiga bosing va bu yerda tinglang{% endblocktrans %}</h6>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div class="col-12 audio-news">
+                                        <!-- single -->
+                                        {% for news in audio_news %}
+                                             {% if news.audio_file and not news.audio_file.isnull %}
+                                                     <div class="col-xl-12 bg-light mb-3 py-3 rounded">
+                                                         <div class="row whats-right-single align-items-center">
+                                                             <div class="audio-source-item d-none">
+                                                                 <audio class="audio-player mt-1 col-12" controls>
+                                                                     <source src="{{ news.audio_file.url }}" type="audio/mpeg">
+                                                                 </audio>
+                                                             </div>
+                                                             <div class="px-3 col-2 text-center">
+                                                                 <img class="rounded-circle w-50" src="{% static 'images/logo/ovoza.png' %}" alt="" srcset="">
+                                                                 <p class="duration p-0 m-0"></p>
+                                                             </div>
+                                                             <div class="px-3 col-9 whats-right-cap">
+                                                                 <div>
+                                                                     <span class="colorb">{{news.category}}</span>
+                                                                     <span class="mx-3">{{news.publish_time.date}}</span> 
+                                                                 </div>
+                                                                 <a class="play-block" href=""><h4 class="news_title">{{news.title|truncatewords:10}}</h4></a>
+                                                             </div>
+                                                             {% if request.user.is_authenticated %}
+                                                                 {% if user.is_superuser %}
+                                                                 <div class="col-1">
+                                                                     <div class="col-12">
+                                                                         <a href="{% url 'edit' 'audio' news.slug %}" class="text-dark">
+                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 
+                                                                                 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                                             </svg>
+                                                                         </a>
+                                                                     </div>
+                                                                     <div class="col-12">
+                                                                         <a href="{% url 'delete' news.slug %}" class="text-dark">
+                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                                                 <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                                             </svg>
+                                                                         </a>
+                                                                     </div>
+                                                                 </div>
+                                                                 {% endif %}
+                                                             {% endif %}
+                                                         </div>
+                                                     </div>
+                                             {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card two -->
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="row video-wrapper">
+                                    <div class="col-12 bg-white header-video-player">
+                                        <div class="row align-items-center mt-1">
+                                            <div class="whats-right-img col-12 align-self-center" id="video_link">
+                                                <video class="w-100 mt-2 rounded" controls>
+                                                    <source src="" type="video/mp4">
+                                                </video>
+                                            </div>
+                                            <div class="col-12">
+                                                <h6 class="text-center mt-1" id="video_title">{% blocktrans %}Yangilik ustiga bosing va bu yerda tomosha qiling{% endblocktrans %}</h6>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div class="col-12 video-news">
+                                        <!-- single -->
+                                        {% for news in video_news %}
+                                            {% if news.video_file %}
+                                                <div class="col-xl-12 bg-light mb-3 px-3 rounded">
+                                                    <div class="row whats-right-single align-items-center">
+                                                        <div class="d-none video-link">
+                                                            <video class="w-100 mt-2 rounded video_time" controls>
+                                                                <source src="{{ news.video_file.url }}" type="video/mp4">
+                                                            </video>
+                                                        </div>
+                                                        <div class="col-11 px-3 whats-right-cap">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <span class="colorb">{{news.category}}</span>
+                                                                    <span class="mx-3">{{news.publish_time.date}}</span> 
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="row">
+                                                                        <div class="col-10">
+                                                                            <a class="play-btn" href=""><h4 class="video-title">{{news.title|truncatewords:10}}</h4></a>
+                                                                        </div>
+                                                                        <div class="col-2">
+                                                                            <h5 class="video-time"></h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {% if request.user.is_authenticated %}
+                                                            {% if user.is_superuser %}
+                                                            <div class="col-1">
+                                                                <div class="col-12">
+                                                                    <a href="{% url 'edit' 'video' news.slug %}" class="text-dark">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 
+                                                                            2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <a href="{% url 'delete' news.slug %}" class="text-dark">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Nav Card -->
+                    </div>
+                </div>
+            </div>
+            <!-- Banner -->
+            <div class="banner-one mt-20 mb-30">
+                <img src="{% static 'images/gallery/body_card1.png' %}" alt="">
+            </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Most Recent Area uz/So'ngi Yangiliklar-->
+                <div class="most-recent-area">
+                    <!-- Section Tittle -->
+                    <div class="small-tittle mb-20">
+                        <h4>{% blocktrans %}So'ngi yangiliklar{% endblocktrans %}</h4>
+                    </div>
+                    <!-- Details -->
+                    
+                    <div class="most-recent mb-40">
+                        {% for news in news_list|slice:"1" %}
+                        <div class="most-recent-img">
+                            {% if news.image %}
+                                <img src="{{ news.image.url }}" alt="">
+                            {% elif news.video_file %}
+                                <video controls>
+                                    <source src="{{ news.video_file.url }}" type="video/mp4">
+                                </video>
+                            {% endif %}
+                            
+                            <div class="most-recent-cap">
+                                <span class="bgbeg">{{news.category}}</span>
+                                <h4><a href="{{news.get_absolute_url}}">{{ news.title | truncatewords:5 }}</a></h4>
+                                <p>{{ news.publish_time }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Single -->
+                    {% for news in news_list|slice:"1:4" %}
+                    <div class="most-recent-single">
+                        <div class="most-recent-images">
+                            <img style="height: 85px; width: 100px;" src="{{ news.image.url }}" alt="">
+                        </div>
+                        <div class="most-recent-capt">
+                            <h4><a href="{{news.get_absolute_url}}">{{ news.title | truncatewords:5 }}</a></h4>
+                            <p>{{ news.publish_time }} <span class="bgbeg text-uppercase mt-1 ms-1 text-white">{{news.category}}</span></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Flow Socail -->
+                <div class="single-follow mb-45">
+                    <div class="single-box">
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-fb.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">  
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div> 
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-tw.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-ins.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-yo.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

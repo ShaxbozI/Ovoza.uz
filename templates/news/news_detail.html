@@ -1,0 +1,252 @@
+{%extends 'index.html'%}
+{% load static %}
+{% load hitcount_tags %}
+{% load i18n %}
+
+<title> {% block title %}{{news.title}}{% endblock title %} </title>
+
+{% block content %}
+<main>
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section-padding">
+       <div class="container">
+          <div class="row">
+             <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                   <div class="feature-img">
+                     {% if news.image %}
+                     <img class="img-fluid" src="{{ news.image.url }}" alt="">
+                     {% elif news.video_file %}
+                     <video controls>
+                        <source src="{{ news.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                     </video>
+                     {% endif %}
+                   </div>
+                   <div class="blog_details">
+                      <h2>{{news.title}}</h2>
+                      <ul class="blog-info-link mt-3 mb-4 text-monospace">
+                         <li><i class="fa fa-user"></i> {{ news.author|title }}</li>
+                         <li>
+                           <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                              <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                              <path d="M190.4 74.1c5.6-16.8-3.5-34.9-20.2-40.5s-34.9 3.5-40.5 20.2l-128 384c-5.6 
+                              16.8 3.5 34.9 20.2 40.5s34.9-3.5 40.5-20.2l128-384zm70.9-41.7c-17.4-2.9-33.9 8.9-36.8 
+                              26.3l-64 384c-2.9 17.4 8.9 33.9 26.3 36.8s33.9-8.9 36.8-26.3l64-384c2.9-17.4-8.9-33.9-26.3-36.8zM352 
+                              32c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32z"/>
+                           </svg>
+                           {{ news.category|title }}</li>
+                         <li><i class="fa fa-comments"></i> {{ comments|length }} {% blocktrans %}Izoh{% endblocktrans %}</li>
+                         <li><i class="fa fa-eye"></i> {% get_hit_count for news %} {% blocktrans %}Ko'rishlar{% endblocktrans %}</li>
+                      </ul>
+                      
+                      <p class="excert">{{ news.body }}</p>
+                      {% if request.user.is_authenticated %}
+                        {% if user.is_superuser %}
+                           <div class="d-flex justify-content-between mx-5">
+                              <span><a href="{% url 'edit' 'news' news.slug %}">{% blocktrans %}O'zgartirish{% endblocktrans %}</a></span>
+                              <span><a href="{% url 'delete' news.slug %}">{% blocktrans %}O'chirish{% endblocktrans %}</a></span>
+                           </div>
+                        {% endif %}
+                     {% endif %}
+                   </div>
+                </div>
+                <div class="navigation-top">
+                   <div class="d-sm-flex justify-content-between text-center">
+                      <p class="like-info">
+                        {% blocktrans %}Xabarni ulashing{% endblocktrans %}
+                     </p>
+                      <div class="col-sm-4 text-center my-2 my-sm-0">
+                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+                      </div>
+                      <ul class="social-icons">
+                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                         <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                         <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                      </ul>
+                   </div>
+                   <div class="navigation-area">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                           {% if news.get_previous_news and news.get_previous_news.image %}
+                              <div class="thumb">
+                                 <a href="{{ news.get_previous_news.get_absolute_url }}">
+                                    <img class="img-fluid" src="{{news.get_previous_news.image.url}}" alt="">
+                                 </a>
+                              </div>
+                              <div class="arrow">
+                                 <a href="{{ news.get_previous_news.get_absolute_url }}">
+                                    <span class="lnr text-white ti-arrow-left"></span>
+                                 </a>
+                              </div>
+                              <div class="detials">
+                                 <p>{% blocktrans %}Oldingi yangilik{% endblocktrans %}</p>
+                                 <a href="{{ news.get_previous_news.get_absolute_url }}">
+                                    <h4>{{ news.get_previous_news.title|truncatewords:3 }}</h4>
+                                 </a>
+                              </div>
+                           {% endif %}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                              {% if news.get_next_news and news.get_next_news.image %}
+                                 <div class="detials">
+                                    <p>{% blocktrans %}Keyingi yangilik{% endblocktrans %}</p>
+                                    <a href="{{ news.get_next_news.get_absolute_url }}">
+                                          <h4>{{ news.get_next_news.title|truncatewords:3 }}</h4>
+                                    </a>
+                                 </div>
+                                 <div class="arrow">
+                                    <a href="{{ news.get_next_news.get_absolute_url }}">
+                                          <span class="lnr text-white ti-arrow-right"></span>
+                                    </a>
+                                 </div>
+                                 <div class="thumb">
+                                    <a href="{{ news.get_previous_news.get_absolute_url }}">
+                                       <img class="img-fluid" src="{{ news.get_next_news.image.url}}" alt="">
+                                    </a>
+                                 </div>
+                              {% endif %}
+                        </div>
+                      </div>
+                   </div>
+                </div>
+                {% if comments|length > 0 %}
+                <div class="comments-area border border-0">
+                  <h4 class="text-monospace">{{ comments|length }} {% blocktrans %}Izoh{% endblocktrans %}</h4>
+                  <div class="comment-list">
+                    {% for comment in comments %}
+                     <div class="single-comment justify-content-between d-flex my-3">
+                        <div class="user justify-content-between d-flex">
+                           <div class="desc">
+                             <p class="comment">
+                                 {{ comment.body }}
+                             </p>
+                             <div class="d-flex justify-content-between">
+                                <div class="d-flex align-items-center">
+                                   <h5>
+                                      <a href="#">{{ comment.user }}</a>
+                                   </h5>
+                                   <p class="date">{{ comment.created_time }}</p>
+                                </div>
+                                <div class="reply-btn">
+                                   <a href="#" class="btn-reply text-uppercase">reply</a>
+                                </div>
+                             </div>
+                          </div>
+                        </div>
+                     </div>
+                     <hr>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+                <div class="comment-form">
+                   <h4 class="text-monospace">{% blocktrans %}Izoh qoldiring{% endblocktrans %}</h4>
+                   <form class="form-contact comment_form" action="#" id="commentForm" method="post">
+                      {% csrf_token %}
+                     <div class="row">
+                         <div class="col-12">
+                            <div class="form-group">
+                               <textarea class="form-control w-100" name="body" cols="40" rows="10" required id="id_body"
+                                  placeholder="Izoh yozing"></textarea>
+                            </div>
+                         </div>
+                     </div>
+                     {% if user.is_authenticated %}
+                     <div class="form-group">
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">{% blocktrans %}Yuborish{% endblocktrans %}</button>
+                     </div>
+                     {% else %}
+                     <div class="form-group">
+                        <a href="{% url 'login' %}" class="button button-contactForm btn_1 boxed-btn">{% blocktrans %}Yuborish{% endblocktrans %}</a>
+                     </div>
+                     {% endif %}
+                   </form>
+                </div>
+             </div>
+             <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                   <aside class="single_sidebar_widget search_widget">
+                      <form action="{% url 'search_result' %}">
+                         <div class="form-group">
+                            <div class="input-group mb-3">
+                               <input type="search" name="q" class="form-control" placeholder='{% blocktrans %}Izlash...{% endblocktrans %}'
+                                  onfocus="this.placeholder = ''" onblur="this.placeholder = '{% blocktrans %}Izlash...{% endblocktrans %}'">
+                               <div class="input-group-append">
+                                  <button class="btns" type="button"><i class="ti-search"></i></button>
+                               </div>
+                            </div>
+                         </div>
+                         <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                            type="submit">Izlash</button>
+                      </form>
+                   </aside>
+                   <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">{% blocktrans %}Ko'p o'qilgan{% endblocktrans %}</h3>
+                        {% for news in news_list|slice:':5' %}
+                            <div class="media post_item">
+                              {% if news.image %}
+                              <img style="height: 85px; width: 100px;" class="img-fluid" src="{{ news.image.url }}" alt="">
+                              {% elif news.video_file %}
+                                    <video controls style="height: 85px; width: 100px;">
+                                       <source src="{{ news.video_file.url }}" type="video/mp4">
+                                    </video>
+                              {% endif %}
+                                <div class="media-body">
+                                    <a href="{{news.get_absolute_url}}">
+                                        <h3>{{news.title|truncatewords:5}}</h3>
+                                    </a>
+                                    <p>{{news.publish_time}}</p>
+                                </div>
+                            </div>
+                         {% endfor %}
+                   </aside>
+                   <aside class="single_sidebar_widget tag_cloud_widget">
+                      <h4 class="widget_title">{% blocktrans %}Kalit so'zlar{% endblocktrans %}</h4>
+                      <ul class="list">
+                         <li>
+                            <a href="#">{% blocktrans %}loyiha{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}jonli{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}texnalogiya{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}sayohat{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}restoran{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}hayot tarzi{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}dizayn{% endblocktrans %}</a>
+                         </li>
+                         <li>
+                            <a href="#">{% blocktrans %}jamiyat{% endblocktrans %}</a>
+                         </li>
+                      </ul>
+                   </aside>
+                   <aside class="single_sidebar_widget newsletter_widget">
+                      <h4 class="widget_title">Obuna</h4>
+                      <form action="#">
+                         <div class="form-group">
+                            <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                               onblur="this.placeholder = 'Enter email'" placeholder='Email kiriting' required>
+                         </div>
+                         <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                            type="submit">{% blocktrans %}Obuna bo'lish{% endblocktrans %}</button>
+                      </form>
+                   </aside>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <!--================ Blog Area end =================-->
+ </main>
+{% endblock %}

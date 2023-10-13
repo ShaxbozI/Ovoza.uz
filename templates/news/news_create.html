@@ -1,0 +1,329 @@
+{%extends 'index.html'%}
+{% load static %}
+{% load i18n %}
+
+<title> {% block title %}{% blocktrans %}Yangilik qo'shish{% endblocktrans %}{% endblock title %} </title>
+
+{% block content %}
+<section class="whats-news-area pt-50 pb-20 gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+            <div class="whats-news-wrapper">
+                <!-- Heading & Nav Button -->
+                <div class="row justify-content-center align-items-end mb-15">
+                    <div class="col-12 text-center">
+                        <div class="section-tittle mb-30">
+                            <h3 class="text-center">{% blocktrans %}Yangilik qo'shish{% endblocktrans %}</h3>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="properties__button">
+                            <!--Nav Button  -->                                            
+                            <nav>                                                 
+                                <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">{% blocktrans %}Matnli {% endblocktrans %}</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">{% blocktrans %}Video {% endblocktrans %}</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">{% blocktrans %}Audio {% endblocktrans %}</a>
+                                </div>
+                            </nav>
+                            <!--End Nav Button  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab content -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Nav Card -->
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- card one -->
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">       
+                                <div class="row">
+                                    <form action="{% url 'create' 'news' %}" method="post" class="w-100" enctype="multipart/form-data"> 
+                                        {% csrf_token %}
+                                        <!-- Title -->
+                                        {{ nesw_form.as_p }}
+                                        <div class="form-group mt-3 col-12 text-center">
+                                            <button type="submit" class="bg-success border form-control text-white">{% blocktrans %}Yangilikni qo'shish{% endblocktrans %}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Card two -->
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="row">
+                                    <form action="{% url 'create' 'video' %}" method="post" class="w-100" enctype="multipart/form-data"> 
+                                        {% csrf_token %}
+                                        {{ video_form.as_p }}
+                                        <div class="form-group mt-3 col-12 text-center">
+                                            <button type="submit" class="bg-success border form-control text-white">{% blocktrans %}Yangilikni qo'shish{% endblocktrans %}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Card three -->
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="row">
+                                    <form action="{% url 'create' 'audio' %}" method="post" class="w-100" enctype="multipart/form-data"> 
+                                        {% csrf_token %}
+                                        {{ audio_form.as_p }}
+                                        <div class="form-group mt-3 col-12 text-center">
+                                            <button type="submit" class="bg-success border form-control text-white">{% blocktrans %}Yangilikni qo'shish{% endblocktrans %}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Nav Card -->
+                    </div>
+                </div>
+            </div>
+            <!-- Banner -->
+            <div class="banner-one mt-20 mb-30">
+                <img src="{% static 'images/gallery/body_card1.png' %}" alt="">
+            </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Most Recent Area uz/So'ngi Yangiliklar-->
+                <div class="most-recent-area">
+                    <!-- Section Tittle -->
+                    <div class="small-tittle mb-20">
+                        <h4>{% blocktrans %}So'ngi yangiliklar{% endblocktrans %}</h4>
+                    </div>
+                    <!-- Details -->
+                    
+                    <div class="most-recent mb-40">
+                        {% for news in news_list|slice:"1" %}
+                        <div class="most-recent-img">
+                            {% if news.image %}
+                                <img src="{{ news.image.url }}" alt="">
+                            {% elif news.video_file %}
+                                <video controls>
+                                    <source src="{{ news.video_file.url }}" type="video/mp4">
+                                </video>
+                            {% endif %}
+                            
+                            <div class="most-recent-cap">
+                                <span class="bgbeg">{{news.category}}</span>
+                                <h4><a href="{{news.get_absolute_url}}">{{ news.title | truncatewords:5 }}</a></h4>
+                                <p>{{ news.publish_time }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Single -->
+                    {% for news in news_list|slice:"1:4" %}
+                    <div class="most-recent-single">
+                        <div class="most-recent-images">
+                            <img style="height: 85px; width: 100px;" src="{{ news.image.url }}" alt="">
+                        </div>
+                        <div class="most-recent-capt">
+                            <h4><a href="{{news.get_absolute_url}}">{{ news.title | truncatewords:5 }}</a></h4>
+                            <p>{{ news.publish_time }} <span class="bgbeg text-uppercase mt-1 ms-1 text-white">{{news.category}}</span></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Flow Socail -->
+                <div class="single-follow mb-45">
+                    <div class="single-box">
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-fb.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">  
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div> 
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-tw.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-ins.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-yo.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content%}
+    
+
+
+
+
+
+
+
+
+
+
+<section class="whats-news-area pt-50 pb-20 gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 py-5">
+                <h3 class="text-center">{% blocktrans %}Yangilik qo'shish{% endblocktrans %}</h3>
+                <form action="" method="post" class="text-center" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    <!-- Title -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder = "Yangilik mavzusi" maxlength="350" required id="id_title">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title_uz" placeholder = "Yangilik mavzusi" maxlength="350" required id="id_title_uz">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title_ru" placeholder = "Тема новостей" maxlength="350" required id="id_title_ru">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title_en" placeholder = "News topic" maxlength="350" required id="id_title_en">
+                    </div>
+                    <!-- Title end -->
+    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="author" placeholder = "Muallif; Автор; The Author:" maxlength="150" required id="id_author">
+                    </div>
+    
+                    <!-- Body -->
+                    <div class="form-group">
+                        <textarea name="body" class="form-control" placeholder = "Mazmuni!" cols="30" rows="8" required id="id_body"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="body_uz" class="form-control" placeholder = "Mazmuni!" cols="30" rows="8" required id="id_body_uz"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="body_ru" class="form-control" placeholder = "Содержание!" cols="30" rows="8" required id="id_body_ru"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="body_en" class="form-control" placeholder = "Content!" cols="30" rows="8" required id="id_body_en"></textarea>
+                    </div>
+                    <!-- Body end -->
+                    
+                    <div class="row justify-content-center">
+                        <div class="input-group mb-3">
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" name="image" accept="image/*" required id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label text-start" for="inputGroupFile01">{% blocktrans %}Rasm tanlang{% endblocktrans %}</label>
+                                </div>
+                            </div>
+                            <select name="category" class="form-control" placeholder="Turini tanlang" required id="id_category">
+                                <option value="" selected>{% blocktrans %}Turini tanlang{% endblocktrans %}</option>
+                                <option value="5">{% blocktrans %}xorijiy{% endblocktrans %}</option>
+                                <option value="6">{% blocktrans %}sport{% endblocktrans %}</option>
+                                <option value="7">{% blocktrans %}fan-texnika{% endblocktrans %}</option>
+                                <option value="8">{% blocktrans %}mahalliy{% endblocktrans %}</option>
+                            </select>
+                            <select name="status" class="form-control" placeholder = "Statusi" id="id_status">
+                                <option value="DF" selected>Draft</option>
+                                <option value="PB">Published</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-3 col-3 text-center">
+                            <button type="submit" class="bg-success border form-control text-white">{% blocktrans %}Yangilikni qo'shish{% endblocktrans %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <!-- Most Recent Area uz/So'ngi Yangiliklar-->
+                <div class="most-recent-area">
+                    <!-- Section Tittle -->
+                    <div class="small-tittle mb-20">
+                        <h4>{% blocktrans %}So'ngi yangiliklar{% endblocktrans %}</h4>
+                    </div>
+                    <!-- Details -->
+                    
+                    <div class="most-recent mb-40">
+                        {% for news in news_list|slice:"1" %}
+                        <div class="most-recent-img">
+                            <img src="{{ news.image.url }}" alt="">
+                            <div class="most-recent-cap">
+                                <span class="bgbeg">{{news.category}}</span>
+                                <h4><a href="{{news.get_absolute_url}}">{{ news.title | truncatewords:5 }}</a></h4>
+                                <p>{{ news.publish_time }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Single -->
+                    {% for news in news_list|slice:"1:8" %}
+                    <div class="most-recent-single">
+                        <div class="most-recent-images">
+                            <img style="height: 85px; width: 100px;" src="{{ news.image.url }}" alt="">
+                        </div>
+                        <div class="most-recent-capt">
+                            <h4><a href="{{news.get_absolute_url}}">{{ news.title | truncatewords:5 }}</a></h4>
+                            <p>{{ news.publish_time }} <span class="bgbeg text-uppercase p-1 ms-1 text-white">{{news.category}}</span></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Flow Socail -->
+                <div class="single-follow mb-45">
+                    <div class="single-box">
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-fb.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">  
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div> 
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-tw.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-ins.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="{% static 'images/news/icon-yo.png' %}" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
